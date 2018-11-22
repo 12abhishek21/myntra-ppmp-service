@@ -1,204 +1,205 @@
+
 package com.ppmp.uniware.model;
 
-import java.util.List;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlSchemaType;
+import javax.xml.bind.annotation.XmlType;
+import javax.xml.datatype.XMLGregorianCalendar;
+
 
 /**
- * @author ankurpratik on 21/11/18.
+ * <p>Java class for SaleOrderItemDTO complex type.
+ * 
+ * <p>The following schema fragment specifies the expected content contained within this class.
+ * 
+ * <pre>
+ * &lt;complexType name="SaleOrderItemDTO"&gt;
+ *   &lt;complexContent&gt;
+ *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType"&gt;
+ *       &lt;sequence&gt;
+ *         &lt;element name="SaleOrderCode" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="SaleOrderItemCode" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="SaleOrderItemStatus" type="{http://www.w3.org/2001/XMLSchema}string"/&gt;
+ *         &lt;element name="ShippingPackageCode" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="ShippingPackageStatus" type="{http://www.w3.org/2001/XMLSchema}string" minOccurs="0"/&gt;
+ *         &lt;element name="Created" type="{http://www.w3.org/2001/XMLSchema}dateTime"/&gt;
+ *       &lt;/sequence&gt;
+ *     &lt;/restriction&gt;
+ *   &lt;/complexContent&gt;
+ * &lt;/complexType&gt;
+ * </pre>
+ * 
+ * 
  */
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType(name = "SaleOrderItemDTO", propOrder = {
+    "saleOrderCode",
+    "saleOrderItemCode",
+    "saleOrderItemStatus",
+    "shippingPackageCode",
+    "shippingPackageStatus",
+    "created"
+})
 public class SaleOrderItemDTO {
-    private int                          saleOrderItemId;
-    private String                       code;
-    private String                       itemSku;
-    private String                       itemName;
-    private String                       itemTypeImageUrl;
-    private String                       itemTypePageUrl;
-    private String                       shelfCode;
-    private boolean                      onHold;
-    private String                       saleOrderItemCode;
-    private String                       statusCode;
-    private String                       itemCode;
-    private boolean                      requiresCustomization;
-    private boolean                      giftWrap;
-    private String                       giftMessage;
-    private List<CustomFieldMetadataDTO> customFieldValues;
+
+    @XmlElement(name = "SaleOrderCode", required = true)
+    protected String saleOrderCode;
+    @XmlElement(name = "SaleOrderItemCode", required = true)
+    protected String saleOrderItemCode;
+    @XmlElement(name = "SaleOrderItemStatus", required = true)
+    protected String saleOrderItemStatus;
+    @XmlElement(name = "ShippingPackageCode")
+    protected String shippingPackageCode;
+    @XmlElement(name = "ShippingPackageStatus")
+    protected String shippingPackageStatus;
+    @XmlElement(name = "Created", required = true)
+    @XmlSchemaType(name = "dateTime")
+    protected XMLGregorianCalendar created;
 
     /**
-     *
+     * Gets the value of the saleOrderCode property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public SaleOrderItemDTO() {
+    public String getSaleOrderCode() {
+        return saleOrderCode;
     }
 
     /**
-     * @return the saleOrderItemId
+     * Sets the value of the saleOrderCode property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public int getSaleOrderItemId() {
-        return saleOrderItemId;
+    public void setSaleOrderCode(String value) {
+        this.saleOrderCode = value;
     }
 
     /**
-     * @param saleOrderItemId the saleOrderItemId to set
-     */
-    public void setSaleOrderItemId(int saleOrderItemId) {
-        this.saleOrderItemId = saleOrderItemId;
-    }
-
-    /**
-     * @return the itemSku
-     */
-    public String getItemSku() {
-        return itemSku;
-    }
-
-    /**
-     * @param itemSku the itemSku to set
-     */
-    public void setItemSku(String itemSku) {
-        this.itemSku = itemSku;
-    }
-
-    public String getItemTypeImageUrl() {
-        return itemTypeImageUrl;
-    }
-
-    public void setItemTypeImageUrl(String itemTypeImageUrl) {
-        this.itemTypeImageUrl = itemTypeImageUrl;
-    }
-
-    public String getItemTypePageUrl() {
-        return itemTypePageUrl;
-    }
-
-    public void setItemTypePageUrl(String itemTypePageUrl) {
-        this.itemTypePageUrl = itemTypePageUrl;
-    }
-
-    /**
-     * @return the itemName
-     */
-    public String getItemName() {
-        return itemName;
-    }
-
-    /**
-     * @param itemName the itemName to set
-     */
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    /**
-     * @return the shelfCode
-     */
-    public String getShelfCode() {
-        return shelfCode;
-    }
-
-    /**
-     * @param shelfCode the shelfCode to set
-     */
-    public void setShelfCode(String shelfCode) {
-        this.shelfCode = shelfCode;
-    }
-
-    /**
-     * @return the statusCode
-     */
-    public String getStatusCode() {
-        return statusCode;
-    }
-
-    /**
-     * @param statusCode the statusCode to set
-     */
-    public void setStatusCode(String statusCode) {
-        this.statusCode = statusCode;
-    }
-
-    /**
-     * @return the saleOrderItemCode
+     * Gets the value of the saleOrderItemCode property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
     public String getSaleOrderItemCode() {
         return saleOrderItemCode;
     }
 
     /**
-     * @param saleOrderItemCode the saleOrderItemCode to set
+     * Sets the value of the saleOrderItemCode property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setSaleOrderItemCode(String saleOrderItemCode) {
-        this.saleOrderItemCode = saleOrderItemCode;
+    public void setSaleOrderItemCode(String value) {
+        this.saleOrderItemCode = value;
     }
 
     /**
-     * @return the itemCode
+     * Gets the value of the saleOrderItemStatus property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public String getItemCode() {
-        return itemCode;
+    public String getSaleOrderItemStatus() {
+        return saleOrderItemStatus;
     }
 
     /**
-     * @param itemCode the itemCode to set
+     * Sets the value of the saleOrderItemStatus property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setItemCode(String itemCode) {
-        this.itemCode = itemCode;
+    public void setSaleOrderItemStatus(String value) {
+        this.saleOrderItemStatus = value;
     }
 
     /**
-     * @return the onHold
+     * Gets the value of the shippingPackageCode property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public boolean isOnHold() {
-        return onHold;
+    public String getShippingPackageCode() {
+        return shippingPackageCode;
     }
 
     /**
-     * @param onHold the onHold to set
+     * Sets the value of the shippingPackageCode property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setOnHold(boolean onHold) {
-        this.onHold = onHold;
+    public void setShippingPackageCode(String value) {
+        this.shippingPackageCode = value;
     }
 
     /**
-     * @return the code
+     * Gets the value of the shippingPackageStatus property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link String }
+     *     
      */
-    public String getCode() {
-        return code;
+    public String getShippingPackageStatus() {
+        return shippingPackageStatus;
     }
 
     /**
-     * @param code the code to set
+     * Sets the value of the shippingPackageStatus property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link String }
+     *     
      */
-    public void setCode(String code) {
-        this.code = code;
+    public void setShippingPackageStatus(String value) {
+        this.shippingPackageStatus = value;
     }
 
-    public boolean isRequiresCustomization() {
-        return requiresCustomization;
+    /**
+     * Gets the value of the created property.
+     * 
+     * @return
+     *     possible object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public XMLGregorianCalendar getCreated() {
+        return created;
     }
 
-    public void setRequiresCustomization(boolean requiresCustomization) {
-        this.requiresCustomization = requiresCustomization;
+    /**
+     * Sets the value of the created property.
+     * 
+     * @param value
+     *     allowed object is
+     *     {@link XMLGregorianCalendar }
+     *     
+     */
+    public void setCreated(XMLGregorianCalendar value) {
+        this.created = value;
     }
 
-    public boolean isGiftWrap() {
-        return giftWrap;
-    }
-
-    public void setGiftWrap(boolean giftWrap) {
-        this.giftWrap = giftWrap;
-    }
-
-    public String getGiftMessage() {
-        return giftMessage;
-    }
-
-    public void setGiftMessage(String giftMessage) {
-        this.giftMessage = giftMessage;
-    }
-
-    public List<CustomFieldMetadataDTO> getCustomFieldValues() {
-        return customFieldValues;
-    }
-
-    public void setCustomFieldValues(List<CustomFieldMetadataDTO> customFieldValues) {
-        this.customFieldValues = customFieldValues;
-    }
 }

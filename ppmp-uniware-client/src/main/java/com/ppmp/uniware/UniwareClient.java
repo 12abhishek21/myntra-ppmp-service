@@ -11,9 +11,9 @@ import javax.ws.rs.core.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 
-import com.ppmp.uniware.api.GetSaleOrderRequest;
-import com.ppmp.uniware.api.GetSaleOrderResponse;
 import com.ppmp.uniware.base.ServiceResponse;
+import com.ppmp.uniware.model.GetSaleOrderRequest;
+import com.ppmp.uniware.model.GetSaleOrderResponse;
 
 /**
  * @author ankurpratik on 21/11/18.
