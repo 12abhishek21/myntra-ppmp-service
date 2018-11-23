@@ -1,0 +1,112 @@
+<binding name="unicommerceServicesBinding19" package="com">
+    <include path="classpath:/META-INF/base-binding.xml" precompiled="true"/>
+    <mapping name="GetSaleOrderRequest" class="com.ppmp.uniware.model.GetSaleOrderRequest">
+        <namespace uri="http://uniware.unicommerce.com/services/" default="elements"/>
+        <structure name="SaleOrder">
+            <value name="Code" field="code"/>
+        </structure>
+    </mapping>
+    <mapping name="GetSaleOrderResponse" class="com.ppmp.uniware.model.GetSaleOrderResponse">
+        <namespace uri="http://uniware.unicommerce.com/services/" default="elements"/>
+        <structure map-as="com.ppmp.uniware.model.ServiceResponse"/>
+        <structure field="saleOrderDTO" map-as="com.ppmp.uniware.model.SaleOrderDetailDTO" usage="optional"/>
+    </mapping>
+    <mapping name="SaleOrder" class="com.ppmp.uniware.model.SaleOrderDetailDTO" extends="com.ppmp.uniware.model.SaleOrderDTO">
+        <namespace uri="http://uniware.unicommerce.com/services/" default="elements"/>
+        <structure map-as="com.ppmp.uniware.model.SaleOrderDTO"/>
+        <value name="CashOnDelivery" field="cod" usage="optional"/>
+        <value name="CustomerCode" field="customerCode" usage="optional"/>
+        <value name="CurrencyCode" field="currencyCode" usage="optional"/>
+        <collection name="Addresses" field="addresses" create-type="java.util.ArrayList">
+            <structure map-as="com.ppmp.uniware.model.WsAddressDetail"/>
+        </collection>
+        <structure name="BillingAddress" field="billingAddress">
+            <value name="ref" field="id" style="attribute"/>
+        </structure>
+        <collection name="SaleOrderItems" field="saleOrderItems" create-type="java.util.ArrayList">
+            <structure name="SaleOrderItem" map-as="com.ppmp.uniware.model.SaleOrderItemDTO"/>
+        </collection>
+        <collection name="ShippingPackages" field="shippingPackages" create-type="java.util.ArrayList" usage="optional">
+            <structure map-as="com.ppmp.uniware.model.ShippingPackageDTO"/>
+        </collection>
+        <collection name="CustomFields" field="customFieldValues" create-type="java.util.ArrayList" usage="optional">
+            <structure name="CustomField" map-as="com.ppmp.uniware.model.CustomFieldMetadataDTO"/>
+        </collection>
+    </mapping>
+    <mapping name="ShippingPackage" class="com.ppmp.uniware.model.ShippingPackageDTO">
+        <namespace uri="http://uniware.unicommerce.com/services/" default="elements"/>
+        <value name="ShipmentCode" field="code"/>
+        <value name="StatusCode" field="status"/>
+        <value name="ShippingPackageType" field="shippingPackageType"/>
+        <value name="InvoiceCode" field="invoiceCode" usage="optional"/>
+        <value name="ShippingProvider" field="shippingProvider" usage="optional"/>
+        <value name="TrackingNumber" field="trackingNumber" usage="optional"/>
+        <value name="TrackingStatus" field="trackingStatus" usage="optional"/>
+        <value name="CourierStatus" field="courierStatus" usage="optional"/>
+        <value name="EstimatedWeight" field="estimatedWeight" usage="optional"/>
+        <value name="ActualWeight" field="actualWeight" usage="optional"/>
+        <value name="DispatchedOn" field="dispatched" usage="optional"/>
+        <value name="DeliveredOn" field="delivered" usage="optional"/>
+        <value name="PodCode" field="podCode" usage="optional"/>
+        <value name="ShippingManifestCode" field="shippingManifestCode" usage="optional"/>
+        <value name="CreatedOn" field="created"/>
+    </mapping>
+    <mapping class="com.ppmp.uniware.model.SaleOrderItemDTO" abstract="true">
+        <namespace uri="http://uniware.unicommerce.com/services/" default="elements"/>
+        <value name="Code" field="code"/>
+        <value name="StatusCode" field="statusCode"/>
+        <value name="ItemSKU" field="itemSku"/>
+        <value name="ChannelProductId" field="channelProductId"/>
+        <value name="CombinationIdentifier" field="combinationIdentifier" usage="optional"/>
+        <value name="CombinationDescription" field="combinationDescription" usage="optional"/>
+        <value name="ItemCode" field="item" usage="optional"/>
+        <value name="Color" field="color" usage="optional"/>
+        <value name="Brand" field="brand" usage="optional"/>
+        <value name="Size" field="size" usage="optional"/>
+        <value name="ReplacementSaleOrderCode" field="replacementSaleOrderCode" usage="optional"/>
+        <value name="ShelfCode" field="shelfCode" usage="optional"/>
+        <value name="ShippingMethodCode" field="shippingMethodCode"/>
+        <value name="ItemName" field="itemName" usage="optional"/>
+        <value name="GiftWrap" field="giftWrap" usage="optional"/>
+        <value name="GiftMessage" field="giftMessage" usage="optional"/>
+        <value name="TotalPrice" field="totalPrice"/>
+        <value name="SellingPrice" field="sellingPrice"/>
+        <value name="Discount" field="discount" usage="optional"/>
+        <value name="ShippingPackageCode" field="shippingPackageCode" usage="optional"/>
+        <value name="FacilityCode" field="facilityCode" usage="optional"/>
+        <value name="FacilityName" field="facilityName" usage="optional"/>
+        <value name="AlternateFacilityCode" field="alternateFacilityCode" usage="optional"/>
+        <value name="ShippingCharges" field="shippingCharges" usage="optional"/>
+        <value name="ShippingMethodCharges" field="shippingMethodCharges" usage="optional"/>
+        <value name="CashOnDeliveryCharges" field="cashOnDeliveryCharges" usage="optional"/>
+        <value name="GiftWrapCharges" field="giftWrapCharges" usage="optional"/>
+        <value name="PacketNumber" field="packetNumber" usage="optional"/>
+        <value name="TaxPercentage" field="taxPercentage" usage="optional"/>
+        <structure name="ShippingAddress">
+            <value name="ref" field="shippingAddressId" style="attribute"/>
+        </structure>
+        <collection name="CustomFields" field="customFieldValues" create-type="java.util.ArrayList" usage="optional">
+            <structure name="CustomField" map-as="com.ppmp.uniware.model.CustomFieldMetadataDTO"/>
+        </collection>
+        <value name="Cancellable" field="cancellable"/>
+        <value name="CancellationReason" field="cancellationReason" usage="optional"/>
+        <value name="ReversePickable" field="reversePickable"/>
+        <value name="OnHold" field="onHold"/>
+        <value name="CreatedOn" field="created"/>
+        <value name="UpdatedOn" field="updated"/>
+    </mapping>
+    <mapping class="com.ppmp.uniware.model.SaleOrderDTO" abstract="true">
+        <namespace uri="http://uniware.unicommerce.com/services/" default="elements"/>
+        <value name="Code" field="code"/>
+        <value name="DisplayOrderCode" field="displayOrderCode" usage="optional"/>
+        <value name="Channel" field="channel" usage="optional"/>
+        <value name="DisplayOrderDateTime" field="displayOrderDateTime" usage="optional"/>
+        <value name="Status" field="status"/>
+        <value name="NotificationEmail" field="notificationEmail" usage="optional"/>
+        <value name="NotificationMobile" field="notificationMobile" usage="optional"/>
+        <value name="CreatedOn" field="created"/>
+        <value name="UpdatedOn" field="updated"/>
+        <value name="CustomerGSTIN" field="customerGSTIN" usage="optional"/>
+    </mapping>
+
+</binding>

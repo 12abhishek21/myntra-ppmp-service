@@ -7,13 +7,20 @@ import javax.ws.rs.client.Invocation;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.MultivaluedHashMap;
 import javax.ws.rs.core.Response;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
-
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
 import com.ppmp.uniware.base.ServiceResponse;
 import com.ppmp.uniware.model.GetSaleOrderRequest;
 import com.ppmp.uniware.model.GetSaleOrderResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.security.oauth2.common.DefaultOAuth2AccessToken;
 
 /**
  * @author ankurpratik on 21/11/18.
@@ -50,19 +57,56 @@ public class UniwareClient extends PpmpClient {
     public GetSaleOrderResponse getXmlResponse(GetSaleOrderRequest request) throws PosClientException {
         //Invocation invocation ;
 
-        System.out.println( Entity.entity(request, MediaType.TEXT_XML));
-        Response post = getClient().target("https://brandstudio.unicommerce.com:443/services/soap/?version=1.8").
-                request(MediaType.TEXT_XML).
-                accept(MediaType.TEXT_XML).
-                post(Entity.entity(request, MediaType.TEXT_XML));
-
+        System.out.println(Entity.entity(request, MediaType.TEXT_XML));
+        Response post = getClient().target("https://brandstudio.unicommerce.com:443/services/soap/?version=1.8").request(MediaType.TEXT_XML).accept(MediaType.TEXT_XML).post(
+                Entity.entity(request, MediaType.TEXT_XML));
         //  post(
-               // Entity.entity(request, MediaType.APPLICATION_XML));
+        // Entity.entity(request, MediaType.APPLICATION_XML));
         //Response r =invocation.invoke();
-
 
         System.out.println(post.toString());
         return new GetSaleOrderResponse();
+    }
+
+    public void invokeSoapRequest(String xmlInput) throws MalformedURLException, IOException {
+        String responseString = "";
+        String outputString = "";
+        String wsURL = "https://brandstudio.unicommerce.com/services/soap/?version=1.8";
+        URL url = new URL(wsURL);
+        URLConnection connection = url.openConnection();
+        HttpURLConnection httpConn = (HttpURLConnection) connection;
+        ByteArrayOutputStream bout = new ByteArrayOutputStream();
+
+        byte[] buffer = new byte[xmlInput.length()];
+        buffer = xmlInput.getBytes();
+        bout.write(buffer);
+        byte[] b = bout.toByteArray();
+        String SOAPAction = "http://litwinconsulting.com/webservices/GetWeather";
+        // Set the appropriate HTTP parameters.
+        httpConn.setRequestProperty("Content-Length", String.valueOf(b.length));
+        httpConn.setRequestProperty("Content-Type", "text/xml; charset=utf-8");
+        httpConn.setRequestProperty("SOAPAction", SOAPAction);
+        httpConn.setRequestMethod("POST");
+        httpConn.setDoOutput(true);
+        httpConn.setDoInput(true);
+        OutputStream out = httpConn.getOutputStream();
+        //Write the content of the request to the outputstream of the HTTP Connection.
+        out.write(b);
+        out.close();
+
+        //Read the response.
+        InputStreamReader isr = new InputStreamReader(httpConn.getInputStream());
+        BufferedReader in = new BufferedReader(isr);
+
+        //Write the SOAP message response to a String.
+        while ((responseString = in.readLine()) != null) {
+            outputString = outputString + responseString;
+        }
+        System.out.println("******************start****************");
+
+        System.out.println(outputString);
+
+        System.out.println("******************end****************");
     }
 
     public <T extends ServiceResponse> T invokeAndGetServiceResponse(Invocation invocation, Class<T> returnType) throws PosClientException {

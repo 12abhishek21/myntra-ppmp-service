@@ -1,0 +1,24 @@
+<binding name="baseBinding" package="com">
+    <mapping class="com.unifier.core.api.base.ServiceResponse" abstract="true">
+        <namespace uri="http://uniware.unicommerce.com/services/" default="elements" />
+        <value name="Successful" field="successful" />
+        <collection name="Errors" field="errors" usage="optional" create-type="java.util.ArrayList" test-method="hasErrors">
+            <structure map-as="com.unifier.core.api.validation.WsError" />
+        </collection>
+        <collection name="Warnings" field="warnings" usage="optional" create-type="java.util.ArrayList" test-method="hasWarnings">
+            <structure map-as="com.unifier.core.api.validation.WsWarning" />
+        </collection>
+    </mapping>
+    <mapping name="Error" class="com.unifier.core.api.validation.WsError">
+        <namespace uri="http://uniware.unicommerce.com/services/" default="elements" />
+        <value name="code" field="code" style="attribute" />
+        <value name="message" field="message" style="attribute" />
+        <value name="description" field="description" style="attribute" usage="optional" />
+    </mapping>
+    <mapping name="Warning" class="com.unifier.core.api.validation.WsWarning">
+        <namespace uri="http://uniware.unicommerce.com/services/" default="elements" />
+        <value name="code" field="code" style="attribute" />
+        <value name="message" field="message" style="attribute" />
+        <value name="description" field="description" style="attribute" usage="optional" />
+    </mapping>
+</binding>

@@ -70,6 +70,43 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.jibx</groupId>
+                <artifactId>maven-jibx-plugin</artifactId>
+                <version>1.2.5</version>
+                <executions>
+                    <execution>
+                        <id>compile-binding</id>
+                        <goals>
+                            <goal>bind</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <schemaBindingDirectory>src/main/resources/META-INF</schemaBindingDirectory>
+                    <includeSchemaBindings>
+                        <includeSchemaBinding>*-binding.xml</includeSchemaBinding>
+                    </includeSchemaBindings>
+                </configuration>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.jibx</groupId>
+                        <artifactId>jibx-bind</artifactId>
+                        <version>1.2.5</version>
+                        <exclusions>
+                            <exclusion>
+                                <artifactId>bcel</artifactId>
+                                <groupId>bcel</groupId>
+                            </exclusion>
+                        </exclusions>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.apache.bcel</groupId>
+                        <artifactId>bcel</artifactId>
+                        <version>6.1</version>
+                    </dependency>
+                </dependencies>
+            </plugin>
         </plugins>
     </build>
 
