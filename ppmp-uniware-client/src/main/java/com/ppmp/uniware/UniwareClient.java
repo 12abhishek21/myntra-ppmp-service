@@ -19,6 +19,8 @@ import com.ppmp.uniware.base.ServiceResponse;
  * @author ankurpratik on 21/11/18.
  */
 public class UniwareClient extends PpmpClient {
+
+
     private static final String UNIWARE_CLIENT_TOKEN_PREFIX = "U55C";
     private static final String UNIWARE_CLIENT_TOKEN_SECRET = "5308fc4e-8cf8-8040-2d2ecf51ccd6";
     private static final String AUTHORIZATION_HEADER_PREFIX = "bearer ";
